@@ -10,13 +10,13 @@ source.dir = .
 
 source.include_exts = py,png,jpg,kv,atlas,json,ttc,ttf
 
-source.exclude_dirs = tests, bin, venv, __pycache__, .git
+source.exclude_dirs = tests, bin, venv, __pycache__, .git, .github
 
-source.include_dirs = data, assets
+source.include_dirs = data
 
 version = 1.0.0
 
-requirements = python3,kivy,requests,beautifulsoup4,lxml,openssl
+requirements = python3,kivy,requests,beautifulsoup4,lxml
 
 orientation = portrait
 
@@ -37,12 +37,6 @@ android.accept_sdk_license = True
 android.archs = arm64-v8a
 
 android.allow_backup = True
-
-android.gradle_dependencies = 
-
-p4a.bootstrap = sdl2
-
-p4a.archs = arm64-v8a
 
 [buildozer]
 
