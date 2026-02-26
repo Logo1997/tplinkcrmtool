@@ -30,13 +30,13 @@ jobs:
           zlib1g-dev \
           libncurses5-dev \
           libncursesw5-dev \
-          libtinfo5 \
           cmake \
           libffi-dev \
           libssl-dev \
           automake \
           zip \
-          unzip
+          unzip \
+          openjdk-17-jdk
     
     - name: Install Python dependencies
       run: |
