@@ -18,6 +18,8 @@ version = 1.0.0
 
 requirements = python3,kivy,requests,beautifulsoup4,lxml
 
+p4a.branch = master
+
 orientation = portrait
 
 fullscreen = 0
