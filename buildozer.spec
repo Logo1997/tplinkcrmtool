@@ -16,7 +16,7 @@ source.include_dirs = data
 
 version = 1.0.0
 
-requirements = python3,kivy==2.3.0,requests,beautifulsoup4,lxml
+requirements = python3,kivy,requests,beautifulsoup4,lxml
 
 orientation = portrait
 
