@@ -10,13 +10,11 @@ source.dir = .
 
 source.include_exts = py,png,jpg,kv,atlas,json,ttc,ttf
 
-source.exclude_dirs = tests, bin, venv, __pycache__, .git, .github
-
-source.include_dirs = data
+source.exclude_dirs = tests, bin, venv, __pycache__, .git, .github, data
 
 version = 1.0.0
 
-requirements = python3,kivy,requests,beautifulsoup4,lxml
+requirements = python3,kivy==2.3.0,requests,beautifulsoup4,lxml
 
 p4a.branch = master
 
@@ -26,19 +24,21 @@ fullscreen = 0
 
 android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
 
-android.api = 31
+android.api = 33
 
 android.minapi = 21
 
 android.ndk = 25b
 
-android.skip_update = False
+android.skip_update = True
 
 android.accept_sdk_license = True
 
 android.archs = arm64-v8a
 
 android.allow_backup = True
+
+android.release_artifact = aab
 
 [buildozer]
 

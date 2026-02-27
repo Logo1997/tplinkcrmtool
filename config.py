@@ -6,14 +6,21 @@ TP-LINK CRM Mobile 配置文件
 import sys
 import shutil
 from pathlib import Path
-from kivy.utils import platform
+
+_platform = None
+
+def get_platform():
+    global _platform
+    if _platform is None:
+        try:
+            from kivy.utils import platform as kivy_platform
+            _platform = kivy_platform
+        except:
+            _platform = ''
+    return _platform
 
 if getattr(sys, 'frozen', False):
     BASE_DIR = Path(sys.executable).parent
-elif platform == 'android':
-    from android.storage import primary_external_storage_path
-    BASE_DIR = Path(primary_external_storage_path()) / 'TPLinkCRM'
-    BASE_DIR.mkdir(parents=True, exist_ok=True)
 else:
     BASE_DIR = Path(__file__).parent
 
@@ -86,6 +93,7 @@ STORAGE_CONFIG['data_dir'].mkdir(parents=True, exist_ok=True)
 
 
 def init_android_assets():
+    platform = get_platform()
     if platform != 'android':
         return
     
@@ -94,16 +102,15 @@ def init_android_assets():
         external_dir = Path(primary_external_storage_path()) / 'TPLinkCRM' / 'data'
         external_dir.mkdir(parents=True, exist_ok=True)
         
-        if platform == 'android':
-            import os
-            app_data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
+        import os
+        app_data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
+        
+        if os.path.exists(app_data_dir):
+            cache_src = os.path.join(app_data_dir, 'product_cache.json')
+            cache_dst = external_dir / 'product_cache.json'
             
-            if os.path.exists(app_data_dir):
-                cache_src = os.path.join(app_data_dir, 'product_cache.json')
-                cache_dst = external_dir / 'product_cache.json'
-                
-                if os.path.exists(cache_src) and not cache_dst.exists():
-                    shutil.copy2(cache_src, str(cache_dst))
-                    print(f"已复制缓存文件到: {cache_dst}")
+            if os.path.exists(cache_src) and not cache_dst.exists():
+                shutil.copy2(cache_src, str(cache_dst))
+                print(f"已复制缓存文件到: {cache_dst}")
     except Exception as e:
         print(f"初始化 Android 资源失败: {e}")

@@ -14,14 +14,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, SlideTransition
 from kivy.core.window import Window
-from kivy.utils import platform
 from kivy.core.text import LabelBase
-from kivy.resources import resource_add_path
 from kivy.lang import Builder
 
 from screens import LoginScreen, MainScreen, DetailScreen, InventoryScreen
 from services import CacheService
-from config import init_android_assets
+from config import init_android_assets, get_platform
 
 CHINESE_FONTS = [
     'C:/Windows/Fonts/msyh.ttc',
@@ -88,6 +86,7 @@ class TPLinkCRMApp(App):
         
         init_android_assets()
         
+        platform = get_platform()
         if platform != 'android':
             Window.size = (400, 700)
         
