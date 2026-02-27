@@ -30,7 +30,7 @@ android.minapi = 21
 
 android.ndk = 25b
 
-android.skip_update = True
+android.skip_update = False
 
 android.accept_sdk_license = True
 
